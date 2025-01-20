@@ -14,6 +14,8 @@ pub use engine::get_output_frame_size;
 
 #[derive(Debug, Clone, Copy, Default)]
 pub enum Resolution {
+    _240p,
+    _360p,
     _480p,
     _720p,
     _1080p,
@@ -28,6 +30,8 @@ pub enum Resolution {
 impl Resolution {
     fn value(&self, aspect_ratio: f32) -> [u32; 2] {
         match *self {
+            Resolution::_240p => [240, (240_f32 / aspect_ratio).floor() as u32],
+            Resolution::_360p => [360, (360_f32 / aspect_ratio).floor() as u32],
             Resolution::_480p => [640, (640_f32 / aspect_ratio).floor() as u32],
             Resolution::_720p => [1280, (1280_f32 / aspect_ratio).floor() as u32],
             Resolution::_1080p => [1920, (1920_f32 / aspect_ratio).floor() as u32],
